@@ -45,7 +45,7 @@ fi
 
 # 5. Build the Web App and Bot bundles
 echo "🛠️ Proje bağımlılıkları kuruluyor..."
-npm install
+npm install --legacy-peer-deps
 
 echo "🏗️ Proje derleniyor (Web sitesi ve WhatsApp botu derleniyor)..."
 npm run build

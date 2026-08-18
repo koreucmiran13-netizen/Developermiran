@@ -102,6 +102,16 @@ export async function startWhatsApp() {
         connectionStatus = 'disconnected';
         qrCode = null;
 
+        // Clean up stale socket reference and listeners
+        if (sock) {
+          try {
+            sock.ev.removeAllListeners('connection.update');
+            sock.ev.removeAllListeners('creds.update');
+            sock.ev.removeAllListeners('messages.upsert');
+          } catch (e) {}
+          sock = null;
+        }
+
         if (shouldReconnect) {
           setTimeout(() => {
             startWhatsApp();
